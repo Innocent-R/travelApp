@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>The Travel</title>
+    <title>The Travel App</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
-    
-
 </head>
 <body>
 <div class="container">
-
     <div class="jumbotron text-center">
-        <h1>Find your favorite destination</h1>
-        <img src="https://t4.ftcdn.net/jpg/06/18/21/71/360_F_618217115_6JfWhRvHB9B91CNv1SOQUKFXoZeoTK4q.jpg" alt="logo">
+        <h1>Travel Destination Review 🌐</h1>
+        <img src="https://english.ckgsb.edu.cn/knowledge/wp-content/uploads/2025/05/Chinese-International-Travel_Post-pandemic-recovery-and-preference-changes.jpg" alt="logo">
 
-        &lt;% if (message.length &gt; 0) { %&gt;
-            &lt;%= message %&gt;
-        &lt;% } %&gt;
+
+        <% if (message && message.length > 0) { %>
+            <div class="alert alert-info"><%= message %></div>
+        <% } %>
+
 
         <p>Login or Signup:</p>
 
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
 
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
+        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
     </div>
-
 </div>
 </body>
 </html>
+
+

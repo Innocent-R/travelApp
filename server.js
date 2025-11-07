@@ -1,19 +1,20 @@
-
+// server.js
 const express = require('express');
 const app = express();
-//const MongoClient = require('mongodb').MongoClient;
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const configDB = require('./config/database.js');
-const mongoose = require('mongoose')
 
-const port = process.env.PORT || 5050;
 
-// Middleware setup
+const port = process.env.PORT || 5000;
+
+
+// the middleware
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,16 +22,17 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-//connecting to mongodb
+
+//connecting with database
 mongoose.connect(configDB.url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
 
-//passport configuration
+
+//requiring passport
 require('./config/passport')(passport);
 
 
-    // Required for passport
 app.use(session({
     secret: 'rcbootcamp2021b',
     resave: true,
@@ -40,11 +42,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// Routes (pass db and passport)
-require('./app/routes.js')(app, passport);
 
-// Launch server
+//requiring routes
+const db = mongoose.connection;
+require('./app/routes.js')(app, passport, db);
+
+
+//the server running on the port
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
-})
-//.catch(err => console.error('Database connection failed:', err));
+});
+
+

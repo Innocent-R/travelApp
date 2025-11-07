@@ -3,16 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <title>The Travel App</title>
 </head>
 <body>
-    <h1>Welcome to the Travel Dashboard</h1>
+    <h1>Choose your next destination!🛩️</h1>
 
-<form action="/messages" method="POST">
-  <input type="text" placeholder="Enter city" name="name" required>
-  <input type="text" placeholder="Enter country" name="msg" required>
-  <button type="submit">Save</button>
+
+<form action="/travelApp" method="POST">
+  <label for="city">Select a city:</label>
+  <select name="name" id="city" required>
+    <option value="">--Choose a city--</option>
+    <option value="Paris">Paris</option>
+    <option value="Tokyo">Tokyo</option>
+    <option value="Dubai">Dubai</option>
+    <option value="London">London</option>
+    <option value="Beijing">Beijing</option>
+    <option value="Miami">Miami</option>
+    <option value="Sydney">Sydney</option>
+    <option value="Cairo">Cairo</option>
+    <option value="Doha">Doha</option>
+    <option value="Kigali">Kigali</option>
+    <option value="Bangok">Bangok</option>
+    <option value="Lisbon">Lisbon</option>
+    <option value="Boston">Boston</option>
+    <option value="Chicago">Chicago</option>
+
+  </select>
+
+
+
+
+  <button type="submit">Search</button>
 </form>
+
+
+
+
+
 
 <ul>
   <% messages.forEach(m => { %>
@@ -23,6 +51,7 @@
   <% }) %>
 </ul>
   <a href="/logout">Logout</a>
+
 
 </body>
 </html>
